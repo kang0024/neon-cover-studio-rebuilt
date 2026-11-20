@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#161418">
+  <meta name="description" content="A private, offline sunset cover art editor.">
+  <title>Afterglow — Cover Studio</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Crect width='40' height='40' rx='8' fill='%23dcfb8b'/%3E%3Cpath d='M8 24a12 12 0 0 1 24 0M10 29h20M15 34h10' stroke='%23171419' stroke-width='3' fill='none'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="studio.css">
+  <link rel="stylesheet" href="controls.css">
+  <script defer src="scenes.js"></script>
+  <script defer src="lettering.js"></script>
+  <script defer src="poster.js"></script>
+  <script defer src="studio.js"></script>
+</head>
+<body>
+  <header class="topbar">
+    <div class="identity"><span class="sigil" aria-hidden="true"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="2.3"><path d="M5 18a11 11 0 0 1 22 0M4 19h24m-21 5h18m-14 5h10"/></svg></span><div><span class="wordmark">AFTERGLOW</span><span class="micro edition">COVER STUDIO</span></div></div>
+    <span class="micro privacy"><i></i> ON-DEVICE STUDIO</span>
+  </header>
+  <main>
+    <div class="project">
+      <div><p class="micro eyebrow">THE POSTER LAB <span>/</span> VOL. 01</p><h1>Chase the afterglow<span>.</span></h1></div>
+      <div class="output"><span class="micro ratio-label">ASPECT RATIO</span><div id="format" class="segments" role="group" aria-label="Aspect ratio">
+        <button data-format="wide" aria-pressed="true" title="Landscape · 1920 × 1080">16:9</button><button data-format="square" aria-pressed="false" title="Square · 1080 × 1080">1:1</button><button data-format="tall" aria-pressed="false" title="Portrait · 1080 × 1350">4:5</button>
+      </div></div>
+    </div>
+    <div class="workspace">
+      <section class="viewport" aria-label="Live cover preview">
+        <header class="viewbar"><span class="micro"><i></i> LIVE CANVAS</span><span class="micro" id="size">1920 × 1080 PX</span></header>
+        <div id="stage" class="stage"><div id="board" class="board"><canvas id="cover" width="1920" height="1080" aria-label="Poster preview. Use the panel buttons to select panels with the keyboard.">Poster preview</canvas><svg id="selector" viewBox="0 0 1000 1000" preserveAspectRatio="none" aria-hidden="true"><polygon/></svg></div></div>
+        <footer class="viewfoot"><span class="micro">AFTERGLOW / ARTBOARD 01</span><span class="hint">Select a panel · drag to reframe</span></footer>
+      </section>
+      <aside class="inspector" aria-label="Poster controls">
+        <section class="block">
+          <h2><span>01</span> Image roll</h2>
+          <div class="roll" id="roll" role="group" aria-label="Image roll"></div>
+          <input type="file" id="photos" accept="image/*" multiple hidden>
+          <div class="actions"><button type="button" id="add" class="button" disabled>＋ Add photos</button><button id="apply" class="button" type="button">Fill selected</button><button id="all" class="button" type="button">Fill all</button></div>
+        </section>
+        <section class="block">
+          <h2><span>02</span> Panel crop <button id="reset" class="quiet" type="button">Reset crop</button></h2>
+          <div id="panels" class="segments panel-tabs" role="group" aria-label="Choose a panel">
+            <button data-panel="0" title="01 · Sunset">01</button><button data-panel="1" title="02 · Boulevard">02</button><button data-panel="2" title="03 · Coast">03</button><button data-panel="3" title="04 · Nightfall">04</button>
+          </div>
+          <div class="sliders">
+            <label>Zoom <output id="zoom-value" for="zoom">1.00×</output><input id="zoom" type="range" min="1" max="3.5" step="0.01" value="1"></label>
+            <label>Left / right <output id="x-value" for="x">0</output><input id="x" type="range" min="-100" max="100" value="0"></label>
+            <label>Up / down <output id="y-value" for="y">0</output><input id="y" type="range" min="-100" max="100" value="0"></label>
+          </div>
+        </section>
+        <section class="block lettering">
+          <h2><span>03</span> Lettering &amp; color</h2>
+          <label class="sr" for="caption">Cover headline</label><textarea id="caption" rows="2" maxlength="56" placeholder="Write a headline">AFTER HOURS</textarea>
+          <div id="grades" class="segments grades" role="group" aria-label="Color grade"><button data-grade="sunset" aria-pressed="true">Sunset</button><button data-grade="neon" aria-pressed="false">Neon</button><button data-grade="natural" aria-pressed="false">Natural</button></div>
+        </section>
+        <div class="export"><button id="download" type="button" disabled>Export PNG <span aria-hidden="true">↓</span></button><p id="status" role="status">Preparing studio…</p></div>
+      </aside>
+    </div>
+    <footer class="pagefoot micro"><span>AFTERGLOW STUDIO <b>✳</b> MADE FOR THE NIGHT</span><span>PHOTOS STAY ON THIS DEVICE</span></footer>
+  </main>
+</body>
+</html>
